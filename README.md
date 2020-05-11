@@ -1,1 +1,1 @@
-python
+python basic course
