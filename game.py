@@ -23,43 +23,45 @@ class Person:
     
     
 class Player(Person):
-    def __init__(self):
+    def __init__(self, player_name):
         super().__init__()
+        self.name = player_name
         self.health = 100
         self.damage = 20
         self.armor = 1.4
 
 
 class Enemy(Person):
-    def __init__(self):
+    def __init__(self, enemy_name):
         super().__init__()
+        self.name = enemy_name
         self.health = 60
         self.damage = 15
         self.armor = 1.2
         
         
 class Fight(Person):
-    def __init__(self, hitter, defender):
+    def __init__(self, httr, dfndr):
         super().__init__()
-        self.hitter = Player()
-        self.defender = Enemy()
+        self.hitter = httr
+        self.defender = dfndr
     
     def fight(self):
-        print(f'{self.hitter} starts fight with {self.hitter.health} health')
-        print(f'{self.defender} starts fight with {self.defender.health} health \n')
+        print(f'{self.hitter.name} starts fight with {self.hitter.health} health')
+        print(f'{self.defender.name} starts fight with {self.defender.health} health \n')
         while True:
-            print(f'{self.hitter} attacks {self.defender}')
+            print(f'{self.hitter.name} attacks {self.defender.name}')
             self.defender.hurt(self.hitter.attack(self.defender))
-            print(f'{self.defender} has {self.defender.health} health \n')
+            print(f'{self.defender.name} has {self.defender.health} health \n')
             if self.defender.health <= 0:
-                print(f'{self.hitter} won with {self.hitter.health} health left')
+                print(f'{self.hitter.name} won with {self.hitter.health} health left')
                 break
             _ = self.hitter
             self.hitter = self.defender
             self.defender = _
 
 
-hero = Player()
-goblin = Enemy()
+hero = Player('dovakin')
+goblin = Enemy('goblin')
 battle = Fight(hero, goblin)
 battle.fight()
